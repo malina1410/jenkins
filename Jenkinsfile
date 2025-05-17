@@ -1,9 +1,5 @@
 pipeline {
-    agent { 
-        node {
-            label 'docker-agent-alpine'
-            }
-      }
+    agent any
     triggers {
         pollSCM '*/5 * * * *'
     }
@@ -11,25 +7,19 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Building.."
-                sh '''
-                echo "Building from Jenkins file"
-                '''
+                sh 'echo "Building from Jenkins file"'
             }
         }
         stage('Test') {
             steps {
                 echo "Testing.."
-                sh '''
-                echo "Testing the build triggered from Jenkins file."
-                '''
+                sh 'echo "Testing the build triggered from Jenkins file."'
             }
         }
         stage('Deliver') {
             steps {
                 echo 'Deliver....'
-                sh '''
-                echo "doing delivery stuff.."
-                '''
+                sh 'echo "doing delivery stuff.."'
             }
         }
     }
